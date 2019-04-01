@@ -1,0 +1,16 @@
+# This is a file of all my learned SQL code. This will help me if I ever forget.
+
+
+# Pulling from table
+SELECT * FROM table_name;
+SELECT column1, Column2, ... FROM table_name;
+
+# Renaming column while pulling data
+SELECT column AS 'New column name' FROM table_name;
+
+# cleaning repetitive data using distinct
+SELECT DISTINCT column FROM table_name;
+# cleaning data using comparison operators (=, !=, >, <, <=, >=)
+SELECT * FROM table_name WHERE column > control_number; # SELECT * FROM movies WHERE year > 2014
+
+# Pulling data when you have some info from a group for selection.
