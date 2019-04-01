@@ -10,16 +10,21 @@ SELECT column AS 'New column name' FROM table_name;
 
 # cleaning repetitive data using distinct
 SELECT DISTINCT column FROM table_name;
+
+
+THE FOLLOWING CODE IS FOR USING THE WHERE COMMAND:
+
 # cleaning data using comparison operators (=, !=, >, <, <=, >=)
 SELECT * FROM table_name WHERE column > control_number; # SELECT * FROM movies WHERE year > 2014
 
 # Pulling data when you have some info about the data within a column.
 SELECT * FROM table_name WHERE column LIKE 'unique_info_goes_here';
 # "_" means you can substitute any individual character here wihtout breaking the pattern
+# USING LIKE: A special operator that can be used with the WHERE clause to search for a pattern.
 SELECT * FROM table_name WHERE column LIKE '%unigue_info%';
 # You can use the "%" in any way as it really maens there is unknown data either before or after the percent sign.
 
-# NULL happens in SQL, and I want to work with NULL, such as removing it or keeping it.
+# NULL happens in SQL, and I want to work with NULL, such as removing it or keeping it. NULL IS WHEN THE FIELD IS EMPTY
 # IS NULL, IS NOT NULL
 SELECT column[j] FROM table_name WHERE column[i] IS NOT NULL; # Ex: SELECT name FROM movies WHERE imdb_rating IS NOT NULL;
 
@@ -30,14 +35,44 @@ SELECT * FROM table_name WHERE column BETWEEN 'lower_threashold' AND 'upper_thre
 
 # As things get more complicated, switching to multiline code
 
-# using AND
+# Using AND
 SELECT *  
 FROM table_name
 WHERE column BETWEEN lower_threashold and upper_threashold
   AND column[i] = 'unique_info';
   
-#SELECT *
-#FROM movies
-#WHERE year < 1985
-	#AND genre = 'horror';
+#SELECT * FROM movies WHERE year < 1994 AND genre = 'horror';
   
+# Using OR
+SELECT * FROM table_name WHERE column [operator] argument OR column [operator] argument;
+# EX: SELECT * FROM movies WHERE genre = 'romance' or genre = 'comedy';
+
+
+THE FOLLOWING CODE IS FOR SORTING DATA:
+# When using ORDER BY, there are two ways to sort: Ascending [ASC] and Decending [DESC]. Naturally SQL Uses Ascending.
+# ORDER BY always comes after WHERE when WHERE is used.
+SELECT * FROM table_name ORDER BY column;
+# EX: SELECT * FROM movies WHERE imdb_rating > 8 ORDER BY year DESC;
+
+#When using large quantities of data, it is important to use a limit to prevent seeing thousands of items at once.
+# LIMIT goes at the end of the query;
+SELECT * FROM table_name LIMIT [number];
+# EX: SELECT * FROM movies ORDER BY imdb_rating DESC LIMIT 3;
+
+# Using CASE is like IF/ELSE in Python. Here we can try and separate our output into difference categories based on logic.
+# I will use CASE, WHEN [equivalent to if] [and THEN], ELSE, and END. You can also rename the CASE using AS at the end.
+SELECT column,
+    CASE
+        WHEN argument THEN answer
+	ELSE answer
+    END
+FROM table_name;
+#Example:
+#SELECT name,
+ #CASE
+  #WHEN imdb_rating > 8 THEN 'Fantastic'
+  #WHEN imdb_rating > 6 THEN 'Poorly Received'
+  #ELSE 'Avoid at All Costs'
+ #END AS 'Review'
+#FROM movies;
+
