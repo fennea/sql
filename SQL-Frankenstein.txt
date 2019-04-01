@@ -13,4 +13,31 @@ SELECT DISTINCT column FROM table_name;
 # cleaning data using comparison operators (=, !=, >, <, <=, >=)
 SELECT * FROM table_name WHERE column > control_number; # SELECT * FROM movies WHERE year > 2014
 
-# Pulling data when you have some info from a group for selection.
+# Pulling data when you have some info about the data within a column.
+SELECT * FROM table_name WHERE column LIKE 'unique_info_goes_here';
+# "_" means you can substitute any individual character here wihtout breaking the pattern
+SELECT * FROM table_name WHERE column LIKE '%unigue_info%';
+# You can use the "%" in any way as it really maens there is unknown data either before or after the percent sign.
+
+# NULL happens in SQL, and I want to work with NULL, such as removing it or keeping it.
+# IS NULL, IS NOT NULL
+SELECT column[j] FROM table_name WHERE column[i] IS NOT NULL; # Ex: SELECT name FROM movies WHERE imdb_rating IS NOT NULL;
+
+# Using BETWEEN, Letter upper threashold is not <= but rather <. Numbers upper threashold is <= not <. 
+SELECT * FROM table_name WHERE column BETWEEN 'lower_threashold' AND 'upper_threashold';
+  #ex: SELECT * FROM movies WHERE name BETWEEN 'D' AND 'G'; # When you want between D and F
+  #ex: SELECT * FROM movies WHERE year BETWEEN 1970 AND 1979; : When you want between 1970 and 1979
+
+# As things get more complicated, switching to multiline code
+
+# using AND
+SELECT *  
+FROM table_name
+WHERE column BETWEEN lower_threashold and upper_threashold
+  AND column[i] = 'unique_info';
+  
+#SELECT *
+#FROM movies
+#WHERE year < 1985
+	#AND genre = 'horror';
+  
