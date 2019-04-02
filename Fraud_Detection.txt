@@ -1,0 +1,38 @@
+# This is a file where I help a bank's finance department identify protentially risky transactions before they finish processing.
+
+table name is transaction_data
+Columns are: id, full_name, email, zip, ip_address
+
+First I looked at a portion of the tablet to get a feel for what I was working with.
+
+SELECT * FROM transaction_data LIMIT 10;
+
+
+I have columns id, full_name, email, zip, and ip_address. 
+I'm going to be narrowing the list down to a known zip. A simple Google Search 
+showed me 20252 is a fake zip provide to Smokey the Bear. #suspicious
+
+SELECT full_name, email FROM transaction_data WHERE zip = 20252;
+
+
+So far I've found 7 fraudulent transactions... Finance team just told me they 
+noticed some Pseudonyms associated with other fraudulent transactions.
+
+SELECT full_name, email FROM transaction_data WHERE full_name = 'Art Vandelay' or full_name LIKE '% der %';
+
+
+Total found: 21... Doing a little IP protection with this next SQL, but you get the idea ;-)...
+
+SELECT ip_address, email FROM transaction_data WHERE ip_address LIKE 'XX.%';
+
+
+Total found: 24... found a hit on some disposable email addresses. A little help 
+from a cybersec friend, and I have some ideas what to look for... I'm keeping this secret... Sorry peeps!
+
+SELECT email FROM transaction_data WHERE email LIKE '%http://XXXXX.com ';
+
+
+Found my last one... Puts my total to 25! #idoitforthemoney but its not my money. Hahaha 
+
+SELECT * FROM transaction_data WHERE ip_address LIKE '120.%' AND full_name LIKE 'John%';
+
