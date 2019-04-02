@@ -10,12 +10,13 @@ SELECT column AS 'New column name' FROM table_name;
 
 # cleaning repetitive data using distinct
 SELECT DISTINCT column FROM table_name;
-
+# Ex: SELECT DISTINCT name FROM babies WHERE name LIKE 'S%' LIMIT 20;
 
 THE FOLLOWING CODE IS FOR USING THE WHERE COMMAND:
 
 # cleaning data using comparison operators (=, !=, >, <, <=, >=)
-SELECT * FROM table_name WHERE column > control_number; # SELECT * FROM movies WHERE year > 2014
+SELECT * FROM table_name WHERE column > control_number; 
+# SELECT * FROM movies WHERE year > 2014
 
 # Pulling data when you have some info about the data within a column.
 SELECT * FROM table_name WHERE column LIKE 'unique_info_goes_here';
@@ -23,10 +24,12 @@ SELECT * FROM table_name WHERE column LIKE 'unique_info_goes_here';
 # USING LIKE: A special operator that can be used with the WHERE clause to search for a pattern.
 SELECT * FROM table_name WHERE column LIKE '%unigue_info%';
 # You can use the "%" in any way as it really maens there is unknown data either before or after the percent sign.
+# EX:  SELECT * FROM nomnom WHERE name LIKE '%meatball%';
 
 # NULL happens in SQL, and I want to work with NULL, such as removing it or keeping it. NULL IS WHEN THE FIELD IS EMPTY
 # IS NULL, IS NOT NULL
 SELECT column[j] FROM table_name WHERE column[i] IS NOT NULL; # Ex: SELECT name FROM movies WHERE imdb_rating IS NOT NULL;
+#EX:  SELECT * FROM nomnom WHERE health IS NULL;
 
 # Using BETWEEN, Letter upper threashold is not <= but rather <. Numbers upper threashold is <= not <. 
 SELECT * FROM table_name WHERE column BETWEEN 'lower_threashold' AND 'upper_threashold';
@@ -40,6 +43,7 @@ SELECT *
 FROM table_name
 WHERE column BETWEEN lower_threashold and upper_threashold
   AND column[i] = 'unique_info';
+# SELECT * FROM nomnom WHERE cuisine = 'Italian' and price = '$$$';
   
 #SELECT * FROM movies WHERE year < 1994 AND genre = 'horror';
   
@@ -58,6 +62,7 @@ SELECT * FROM table_name ORDER BY column;
 # LIMIT goes at the end of the query;
 SELECT * FROM table_name LIMIT [number];
 # EX: SELECT * FROM movies ORDER BY imdb_rating DESC LIMIT 3;
+# EX: SELECT name, gender, number FROM babies WHERE year = 1880 ORDER BY number DESC LIMIT 10;
 
 # Using CASE is like IF/ELSE in Python. Here we can try and separate our output into difference categories based on logic.
 # I will use CASE, WHEN [equivalent to if] [and THEN], ELSE, and END. You can also rename the CASE using AS at the end.
