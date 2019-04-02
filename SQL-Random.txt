@@ -5,3 +5,14 @@ SELECT email, birthday FROM users WHERE birthday >= '1980-01-01' AND birthday <=
 SELECT email, created_at FROM users WHERE created_at <= '2017-05-31' ORDER BY created_at DESC;
 
 SELECT * FROM users WHERE campaign IS NOT NULL AND test IS NOT NULL;
+
+
+SELECT name,
+  CASE
+    WHEN review > 4.5 THEN 'Extraordinary'
+    WHEN review > 4 THEN 'Excelent'
+    WHEN review > 3 THEN 'Good'
+    WHEN review > 2 THEN 'fair'
+    ELSE 'Poor'
+  END AS 'Review'
+FROM nomnom;
