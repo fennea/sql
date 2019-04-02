@@ -7,6 +7,7 @@ SELECT column1, Column2, ... FROM table_name;
 
 # Renaming column while pulling data
 SELECT column AS 'New column name' FROM table_name;
+#Ex: SELECT id AS '#', special_instructions AS 'Notes' FROM orders WHERE special_instructions IS NOT NULL AND special_instructions LIKE '%box%' ORDER BY special_instructions ASC LIMIT 20;
 
 # cleaning repetitive data using distinct
 SELECT DISTINCT column FROM table_name;
@@ -23,7 +24,7 @@ SELECT * FROM table_name WHERE column LIKE 'unique_info_goes_here';
 # "_" means you can substitute any individual character here wihtout breaking the pattern
 # USING LIKE: A special operator that can be used with the WHERE clause to search for a pattern.
 SELECT * FROM table_name WHERE column LIKE '%unigue_info%';
-# You can use the "%" in any way as it really maens there is unknown data either before or after the percent sign.
+# You can use the "%" in any way as it really means there is unknown data either before or after the percent sign.
 # EX:  SELECT * FROM nomnom WHERE name LIKE '%meatball%';
 
 # NULL happens in SQL, and I want to work with NULL, such as removing it or keeping it. NULL IS WHEN THE FIELD IS EMPTY
