@@ -1,0 +1,36 @@
+# The Cryptocurrency Exchange is in Tokyo. The broker exchanges Bitcoin, Bitcoin Cash, Etherium, and Litecoin.
+# This is a file filled with the data collection I performed using SQLite.
+# The Ledger is a portion of information from January, 2019.
+
+# Get a feel for the ledger
+SELECT * FROM transactions;
+
+# loot at the total sum of Crypto Purchased
+SELECT SUM(money_in) AS 'Crypt Purchased ($)' FROM transactions;
+
+# look at the total sum of Crypto Sold
+SELECT SUM(money_out) AS 'Crypt Sold ($)' FROM transactions;
+
+# Review the total number of transactions that were money in. 
+SELECT COUNT(money_in) AS 'Total purchase Transactions' 
+FROM transactions
+WHERE money_in IS NOT NULL;
+
+
+# Look at the total number of Bitcoin purchased
+SELECT COUNT(money_in) AS 'Total Bitcoin Purchases'
+FROM transactions
+WHERE currency = "BIT";
+
+
+# Compare all transactions to see the largest single purchase and sale.
+SELECT MAX(money_in), MAX(money_out) 
+FROM transactions;
+
+# Looking at the average amount of money spend purchasing Etherium.
+SELECT ROUND(AVG(money_in), 2) FROM transactions WHERE currency = 'ETH';
+
+
+Creating a new ledger looking at total money in and out on the specific date range of the database.
+SELECT date, ROUND(AVG(money_in), 2) AS 'average money in', ROUND(AVG(money_out), 2) AS 'average money out' FROM transactions GROUP BY date;
+
