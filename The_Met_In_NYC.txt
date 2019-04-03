@@ -1,0 +1,42 @@
+# I was lucky enough to be able to analyse the artifcats found in The Metropolitan Museum of Art in New York City.
+# This is the SQL code I used to meet the request:
+
+# Tol look at the columns within the database
+SELECT * FROM met LIMIT 10;
+
+# To see how many rows were in the database
+SELECT COUNT(*) FROM met;
+
+# celery was a large part of life for the wealthy in the 1800s I did a search for pieces that involved the use of celery. Hahaha
+SELECT COUNT(*) FROM met WHERE category LIKE '%celery%';
+
+# I wanted to look at the ten oldest pieces of art at The Met, and it turns out there are a lot of old Candle sticks. So to keep it fun,
+# I decided to look for distinct titles, so that I could see ten different old items.
+SELECT DISTINCT title, medium, date FROM met ORDER BY date ASC LIMIT 10;
+
+# Looking at the top ten countries that provided art to the exhibit.
+SELECT country, COUNT(country) FROM met GROUP BY country ORDER BY COUNT(country) DESC LIMIT 10;
+
+# Looked at the top categories of art based on number of items at the exhibit. Turns out there are more bowls than candlesticks.
+SELECT category, COUNT(category) AS 'Total # of Items' FROM met GROUP BY category HAVING COUNT(category) > 100;
+
+# Looking for some bling. Checking both Gold and Silver items to see how many they have.
+SELECT medium, COUNT(medium) AS 'total' 
+FROM met 
+WHERE medium LIKE '%gold%' 
+OR medium LIKE '%silver%'
+GROUP BY 1
+ORDER BY 2 DESC;
+
+# OR
+
+SELECT CASE
+   WHEN medium LIKE '%gold%'   THEN 'Gold'
+   WHEN medium LIKE '%silver%' THEN 'Silver'
+   ELSE NULL
+  END AS 'Bling',
+  COUNT(*)
+FROM met
+WHERE Bling IS NOT NULL
+GROUP BY 1
+ORDER BY 2 DESC;
