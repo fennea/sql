@@ -22,4 +22,22 @@ ALTER TABLE table_name
 ADD COLUMN columnN parameter;
 # Ex:
 
-UPDATE
+# UPDATE item in a row requires selecting the table, then column, then row.
+UPDATE table_name
+SET column = 'column_data'
+WHERE id = row_number;
+# Ex:
+
+# DELETE FROM used to clearn out rows that have data that isn't usable.
+DELETE FROM table_name
+WHERE column = 'column data' # or iS NULL or any other condition
+# Ex: DELETE FROM celebs WHERE twitter_handle IS NULL;
+
+# CREATE TABLE using constraints to prevent issues with data problems
+CREATE TABLE table_name(column1 parameter condition, column2 parameter condition, ..., columnN parameter condition);
+# Ex:
+ CREATE TABLE awards (
+ 	 id INTEGER PRIMARY KEY,
+   recipient TEXT NOT NULL,
+   award_name TEXT DEFAULT 'Grammy'
+ );
