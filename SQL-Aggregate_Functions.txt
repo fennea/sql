@@ -1,0 +1,39 @@
+# This is a file for SQL Aggregate_functions
+
+# Using count() to count the number of rows in a table.
+SELECT COUNT(*) FROM table_name;
+# Ex: SELECT COUNT(*) FROM fake_apps WHERE price = 0;
+
+# Using SUM() as a function to calculate the SUM of a column
+SELECT SUM(column) FROM table_name;
+# Ex: SELECT SUM(downloads) FROM fake_apps;
+
+# Using MAX() and MIN() to find the maximum and minimum values for a column.
+SELECT MAX(column) FROM table_name;
+# Ex: SELECT MAX(price) FROM fake_apps;
+
+# Using AVG() function to calculate the average value of a column
+SELECT AVG(column) FROM table_name;
+# Ex: SELECT AVG(downloads) FROM fake_apps;
+
+# Using ROUND() function takes two arguments, the column name and an integer for the number of decimal places.
+SELECT ROUND(Arg1, Arg2) FROM table_name;
+# Ex: SELECT name, ROUND(price, 0) FROM fake_apps ORDER BY price;
+# Ex: SELECT ROUND(AVG(price), 2) FROM fake_apps;
+
+# Using GROUP BY to clean data and group it for easier collection.
+SELECT avg(column) FROM table_name GROUP BY column ORDER BY column;
+# Ex: SELECT price, COUNT(*) FROM fake_apps WHERE downloads > 20000 GROUP BY price;
+# Ex: SELECT category, SUM(downloads) AS downloads FROM fake_apps GROUP BY category ORDER BY downloads;
+
+# Using GROUP BY to clean data and group it by using the order of request to produce the easiest compiled output.
+SELECT column1, SUM(column2) FROM table_name GROUP BY 1;
+# Ex: SELECT category, price, AVG(downloads) FROM fake_apps GROUP BY 1, 2;
+
+# Using HAVING is like using WHERE except it works with Aggregates.
+SELECT column1, SUM(column2) FROM table_name GROUP BY 1 HAVING SUM(column2) > value;
+# Ex: SELECT price, ROUND(AVG(downloads)) AS 'Average Downloads', COUNT(*) AS 'Number of Apps'
+SELECT price, ROUND(AVG(downloads)) AS 'Average Downloads', COUNT(*) AS 'Number of Apps' 
+FROM fake_apps
+GROUP BY price
+HAVING COUNT(*) > 10;
