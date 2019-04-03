@@ -16,3 +16,9 @@ SELECT name,
     ELSE 'Poor'
   END AS 'Review'
 FROM nomnom;
+
+SELECT category, COUNT(category) FROM startups
+WHERE category IS NOT NULL
+GROUP BY 1
+HAVING COUNT(category) >3
+ORDER BY 2 DESC;
