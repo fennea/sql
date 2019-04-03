@@ -1,0 +1,36 @@
+# Looking at some of the news going on with hackers through the Hacker News website Hacker News thanks to the Y Combinator 
+through the MIT license.
+
+# Getting to know the hacker_news database
+SELECT * FROM hacker_news LIMIT 10;
+
+# Looking for the top 5 articles with the highest score.
+ SELECT title, score FROM hacker_news ORDER BY score DESC LIMIT 5;
+ 
+# Checking out the total amount of points in the database
+SELECT SUM(score) FROM hacker_news;
+
+# Finding the top contributors at the website
+SELECT user, SUM(score) 
+FROM hacker_news 
+GROUP BY 1 
+HAVING SUM(score) > 200
+ORDER BY 2 DESC;
+
+# Testing the 1, 9, 90 rule
+SELECT (517.0 + 309.0 + 304.0 + 282.0) / 6366.0;
+
+# Looking up illegal activity by a user who is rickrolling users by sharing a link that is different than the discription.
+SELECT user, COUNT(url) FROM hacker_news 
+WHERE url = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' 
+GROUP BY user
+ORDER BY 2 DESC;
+
+# Looking up when is the best time to post for highest points and viewership
+SELECT strftime('%H', timestamp) AS 'Hour of Post (Zulu)', ROUND(AVG(score)) AS 'Average Score per Hour', COUNT(*) AS 'Total Posts'
+FROM hacker_news
+WHERE timestamp IS NOT NULL
+GROUP BY 1
+ORDER BY 2 DESC;
+
+Answer 1800Z
