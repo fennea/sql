@@ -1,0 +1,15 @@
+# Advanced Code in using data from multiple Databases
+
+
+# Creating a joined table:
+SELECT * FROM orders
+JOIN subscriptions
+on orders.subscription_id = subscriptions.subscription_id;
+
+
+# Creating a joined table and viewing the slection based on a a specific parameter.
+SELECT * from orders 
+JOIN subscriptions
+on orders.subscription_id = subscriptions.subscription_id
+WHERE subscriptions.description = 'Fashion Magazine';
+
