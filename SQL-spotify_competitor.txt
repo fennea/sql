@@ -1,0 +1,62 @@
+# This is the SQL I used when looking through a Spotify Competitors data.
+
+# This query shows the plans associated with user id's
+SELECT user_id, description FROM premium_users
+JOIN plans
+ON premium_users.membership_plan_id = plans.id;
+
+# This shows me the song title played by each user when the data was pulled into the SQL server.
+
+SELECT user_id, play_date, title FROM plays
+JOIN songs
+ON plays.song_id = songs.id;
+ 
+# This shows how many people were members, but not premium members.
+
+SELECT COUNT(id) FROM users
+LEFT JOIN premium_users
+ON users.id = premium_users.user_id
+WHERE premium_users.user_id IS NULL;
+
+# This is a list of customers that continued to listen to music through the months of January and February.
+
+WITH january AS (
+  SELECT *
+  FROM plays
+  WHERE strftime("%m", play_date) = '01'
+),
+february AS (
+  SELECT *
+  FROM plays
+  WHERE strftime("%m", play_date) = '02'
+)
+SELECT january.user_id FROM january
+LEFT JOIN february
+ON january.user_id = february.user_id
+WHERE february.user_id IS NULL;
+
+# This is to see which premium users were active or canceled within the list of data for the specific timeperiod in the SQL Database
+# In this case, NULL is good
+
+SELECT user_id, purchase_date, cancel_date, months FROM premium_users
+CROSS JOIN months;
+
+# Using UNION to add new songs to a database.
+ 
+SELECT * FROM songs
+UNION
+SELECT * FROM bonus_songs;
+
+# Counting the number of times specific songs were played, and displaying the title and author with count total.
+
+WITH play_count AS (
+	SELECT song_id, 
+  	COUNT(*) AS 'times_played'
+  FROM plays
+  GROUP BY song_id
+)
+SELECT songs.title, songs.artist, play_count.times_played
+FROM play_count
+JOIN songs
+ON play_count.song_id = songs.id;
+ 
