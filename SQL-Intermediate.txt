@@ -1,0 +1,64 @@
+# Primary Key requirements: non ov the values can be null, each value must be unique, a table cannot have more than on primary key column.
+# WHen a primary key from one table shows up in another table, it is called a foreign key.
+
+# Combining tables using variations of JOIN is important. Here's how it's done:
+
+Select * FROM table_name_one
+Join Column
+ON table_name_one.shared_column = table_name_two.shared_column;
+
+# EX:
+# SELECT * FROM orders
+# JOIN subscriptions
+# ON orders.subscription_id = subscriptions.subscription_id;
+
+# You can focus the output based on what you are looking for:
+
+Select * FROM table_name_one
+Join Column
+ON table_name_one.shared_column = table_name_two.shared_column
+WHERE table_name_two.column = 'specific item';
+
+# EX:
+# SELECT * FROM orders 
+# JOIN subscriptions
+# ON orders.subscription_id = subscriptions.subscription_id
+# WHERE subscriptions.description = 'Fashion Magazine';
+
+# LEFT JOIN is used to bring together tables even when some rows are missing data when joined.
+
+SELECT * FROM table_name_one
+LEFT JOIN table_name_two
+ON shared_column = shared_column
+
+# EX:
+# SELECT * FROM newspaper 
+# LEFT JOIN online 
+# ON newspaper.id = online.id;
+
+# You can focus the output based on what you are looking for:
+
+Select * FROM table_name_one
+LEFT JOIN table_name_two
+ON shared_column = shared_column
+WHERE table_name_two.column = 'specific item';
+
+# EX:
+# SELECT * FROM newspaper 
+# LEFT JOIN online 
+# ON newspaper.id = online.id 
+# WHERE online.id IS NULL;
+
+# CROSS JOIN(cartesian product) is used to combine two tables in the same way as joining two tables in this way:
+
+SELECT * FROM table_name_one
+CROSS JOIN table_name_two;
+
+# EX:
+# SELECT * FROM newspaper
+# CROSS JOIN months;
+
+# This is the same as:
+
+# EX:
+# SELECT * FROM table_name_one, table_name_two;
