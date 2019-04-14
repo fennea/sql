@@ -62,3 +62,40 @@ CROSS JOIN table_name_two;
 
 # EX:
 # SELECT * FROM table_name_one, table_name_two;
+
+# Using UNION to combine two or more tables with the same columns to make one table.
+# Tables must have the same number of columns, the columns must ahve teh same data types in teh same order as the first table.
+
+SELECT * FROM table_name_one
+UNION
+SELECT * FROM table_name_two;
+
+# EX:
+# SELECT * FROM newspaper
+# UNION
+# SELECT * FROM online;
+
+# Using WITH is a pain. Basically you are creating a temporary table and joining it with another table.
+
+WITH new_table_name AS (
+  SELECT column_one, columnN
+  AS 'new_column_name'
+  FROM table_name
+)
+SELECT table_name_two.column, new_table_name.column
+FROM new_table_name
+JOIN table_name_two
+ON table_name_two.primary_key_column = new_table_name.primary_key_column;
+
+# EX:
+
+# WITH previous_query AS (
+  # SELECT customer_id, COUNT(subscription_id)
+  # AS 'subscriptions'
+	# FROM orders
+	# GROUP BY customer_id
+# )
+# SELECT customers.customer_name, previous_query.subscriptions
+# FROM previous_query
+# JOIN customers
+# ON customers.customer_id = previous_query.customer_id;
