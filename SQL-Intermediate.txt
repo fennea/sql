@@ -1,4 +1,4 @@
-# Primary Key requirements: non ov the values can be null, each value must be unique, a table cannot have more than on primary key column.
+# Primary Key requirements: non of the values can be null, each value must be unique, a table cannot have more than on primary key column.
 # WHen a primary key from one table shows up in another table, it is called a foreign key.
 
 # Combining tables using variations of JOIN is important. Here's how it's done:
