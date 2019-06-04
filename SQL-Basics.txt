@@ -59,6 +59,12 @@ SELECT * FROM table_name WHERE column [operator] argument OR column [operator] a
 # Using IN
 # IN is a way to say within
 SELECT * FROM table_name WHERE column IN (5,6,7) AND column2 IS NULL
+-- select the ProductNumber and Name columns
+SELECT ProductNumber, Name
+FROM SalesLT.Product
+-- check that Color is one of 'Black', 'Red' or 'White'
+-- check that Size is one of 'S' or 'M'
+WHERE Color IN ('Black', 'Red', 'White') AND Size IN ('S', 'M');
 
 
 THE FOLLOWING CODE IS FOR SORTING DATA:
