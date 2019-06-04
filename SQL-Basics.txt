@@ -24,6 +24,10 @@ SELECT * FROM table_name WHERE column LIKE 'unique_info_goes_here';
 # "_" means you can substitute any individual character here wihtout breaking the pattern
 # USING LIKE: A special operator that can be used with the WHERE clause to search for a pattern.
 SELECT * FROM table_name WHERE column LIKE '%unigue_info%';
+
+# _ is any character, [0-9] is any number between 0 and 9.
+# EX: SELECT Name, ListPrice FROM SalesLT.Product WHERE ProductNumber LIKE 'FR-_[0-9][0-9]_-[0-9][0-9]';
+
 # You can use the "%" in any way as it really means there is unknown data either before or after the percent sign.
 # EX:  SELECT * FROM nomnom WHERE name LIKE '%meatball%';
 
