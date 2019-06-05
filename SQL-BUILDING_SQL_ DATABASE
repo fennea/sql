@@ -72,6 +72,9 @@ SELECT * FROM friends;
 ALTER TABLE friends
 ADD COLUMN email TEXT;
 
+ALTER TABLE friends
+DROP COLUMN email;
+
 UPDATE friends
 SET email = 'jane@codecademy.com'
 WHERE id = 1;
